@@ -1,0 +1,139 @@
+.header-section {
+  background: #6c9dce;
+  padding: 2rem;
+  color: white;
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: unset;
+  font-style: italic;
+}
+
+.col-md-3,
+.col-md-9 {
+  padding: 0;
+}
+
+.side {
+  height: 100vh;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.main {
+  height: 85vh;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.main {
+  overflow-y: auto;
+}
+
+.side {
+  background: #e9e9e9;
+  color: #6e6e6e;
+  border-right: 1px solid #f1f1f1;
+
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .types {
+    .priority-btn {
+      width: 100%;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-family: cursive;
+      border: 1px solid lightgrey;
+      border-radius: 20px;
+    }
+  }
+  .input-text {
+    margin-top: 1rem;
+    input[type="search"] {
+      border: none;
+      border-radius: 1rem;
+      font-size: 1em;
+      outline: none;
+      padding: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+.active {
+  background: #6c9dce;
+  color: white;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  select {
+    margin-right: 1rem;
+    padding: 7px;
+    border-radius: 7px;
+    border: 1px solid lightgrey;
+  }
+
+  .add-task-btn {
+    padding: 7px;
+    border-radius: 7px;
+    font-family: cursive;
+    border: 1px solid lightgrey;
+  }
+}
+
+ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+  .task {
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    .ico {
+      display: flex;
+      .fa {
+        font-size: 20px;
+      }
+      .edit {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.assignee-select,
+.priority-select,
+input[type="datetime-local"] {
+  padding: 7px;
+  border-radius: 7px;
+  border: 1px solid lightgrey;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.modal-header .close {
+  margin-top: -20px;
+}
+
+.msg-box {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+}
