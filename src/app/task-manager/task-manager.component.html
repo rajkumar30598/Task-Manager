@@ -1,0 +1,105 @@
+<div class="task-tracker">
+    <div class="header-section">
+        Task Manager
+    </div>
+    <div class="row">
+        <div class="col-md-3 side">
+            <div class="input-text">
+                <input type="search" (input)="searchByKey($event)" placeholder="Search Tasks">
+            </div>
+            <hr>
+            <div>
+                <h2 class="heading"> <i class="	fa fa-calendar-check-o"></i> Task priority </h2>
+                <div class="types">
+                    <button class="priority-btn" [ngClass]="priorityActive == 'all' ? 'active' : ''"
+                        (click)="filterByType('all')">All</button>
+                    <button class="priority-btn" [ngClass]="priorityActive == 'high' ? 'active' : ''"
+                        (click)="filterByType('high')">High</button>
+                    <button class="priority-btn" [ngClass]="priorityActive == 'medium' ? 'active' : ''"
+                        (click)="filterByType('medium')">Medium</button>
+                    <button class="priority-btn" [ngClass]="priorityActive == 'low' ? 'active' : ''"
+                        (click)="filterByType('low')">Low</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 main">
+            <div class="top-section">
+                <h2 class="heading">List of Tasks</h2>
+                <div class="sort-by-select">
+                    <select name="" (change)="sortByOrder($event)">
+                        <option value="Newest">Newest</option>
+                        <option value="Oldest">Oldest</option>
+                    </select>
+                    <button class="add-task-btn" data-toggle="modal" data-target="#exampleModal"> <i
+                            class="fa fa-plus"></i> Add Task</button>
+                </div>
+            </div>
+            <div class="lists">
+                <ul>
+                    <li class="task" *ngFor="let data of allList">
+                        <div class="row">
+                            <div class="col-md-5"> {{ data.message }}</div>
+                            <div class="col-md-2"> {{ getNameById(data.assigned_to) }} </div>
+                            <div class="col-md-2"> {{ data.priority == '1' ? 'Low' : (data.priority == '2' ? 'Medium' :
+                                'High') }}</div>
+                            <div class="col-md-2"> {{ data.due_date ? data.due_date : '-' }}</div>
+                            <div class="col-md-1 ico">
+                                <div class="edit" data-toggle="modal" data-target="#exampleModal"
+                                    (click)="editTemplate(data.id)"> <i class="fa fa-edit"></i> </div>
+                                <div class="delete" (click)="deleteTask(data.id)"><i class="fa fa-trash"></i></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="">
+                    <h5 class="modal-title" id="exampleModalLabel">Create/Edit Task</h5>
+                    <button type="button" class="close" id="closeModel" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 p-0 mb-2">
+                        <input class="msg-box w-100" type="text" name="message" id="message" [(ngModel)]="message"
+                            placeholder="Enter Your Message">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <p>Assign To</p>
+                        <select name="assignee" id="assignee" class="assignee-select w-100" [(ngModel)]="assignTo">
+                            <option>Select User</option>
+                            <option *ngFor="let data of allUsers" [value]="data.id"> {{ data.name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <p>priority</p>
+                        <select name="priority" id="priority" class="priority-select w-100" [(ngModel)]="priority">
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <p>Due Date</p>
+                        <input type="datetime-local" name="date" id="date" class="w-100" [(ngModel)]="dateTime">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="taskid == null ? saveTask() : updateTask()">Add
+                    Task</button>
+            </div>
+        </div>
+    </div>
+</div>
