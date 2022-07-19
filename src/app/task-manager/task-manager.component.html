@@ -30,7 +30,7 @@
                         <option value="Newest">Newest</option>
                         <option value="Oldest">Oldest</option>
                     </select>
-                    <button class="add-task-btn" data-toggle="modal" data-target="#exampleModal"> <i
+                    <button class="add-task-btn" data-toggle="modal" data-target="#exampleModal" (click)="addTask()"> <i
                             class="fa fa-plus"></i> Add Task</button>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                 <ul>
                     <li class="task" *ngFor="let data of allList">
                         <div class="row">
-                            <div class="col-md-5"> {{ data.message }}</div>
-                            <div class="col-md-2"> {{ getNameById(data.assigned_to) }} </div>
+                            <div class="col-md-5"> {{ data.message ? data.message : '-' }}</div>
+                            <div class="col-md-2"> {{ data.assigned_to ? getNameById(data.assigned_to) : '-' }} </div>
                             <div class="col-md-2"> {{ data.priority == '1' ? 'Low' : (data.priority == '2' ? 'Medium' :
                                 'High') }}</div>
                             <div class="col-md-2"> {{ data.due_date ? data.due_date : '-' }}</div>
@@ -97,7 +97,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="taskid == null ? saveTask() : updateTask()">Add
+                <button type="button" [disabled]="disableBtn" class="btn btn-primary"
+                    (click)="taskid == null ? saveTask() : updateTask()">Add
                     Task</button>
             </div>
         </div>
